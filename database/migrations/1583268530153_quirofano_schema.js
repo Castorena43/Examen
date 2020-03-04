@@ -7,6 +7,7 @@ class QuirofanoSchema extends Schema {
   up () {
     this.create('quirofanos', (table) => {
       table.increments()
+      table.string('nombre',100).notNullable()
       table.timestamps()
     })
   }

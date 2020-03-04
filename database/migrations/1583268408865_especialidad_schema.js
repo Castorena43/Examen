@@ -8,7 +8,7 @@ class EspecialidadSchema extends Schema {
     this.create('especialidads', (table) => {
       table.increments()
       table.string('nombre',100).notNullable()
-      teble.string('descripcion',400).notNullable()
+      table.string('descripcion',400).notNullable()
       table.timestamps()
     })
   }
