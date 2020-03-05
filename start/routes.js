@@ -17,3 +17,9 @@
 const Route = use('Route')
 
 Route.on('/').render('welcome')
+
+Route.group(() => {
+  Route.post('/create','Controller/EspecialidadController.create')
+  Route.post('/update','Controller/EspecialidadController.update')
+  Route.post('/delete','Controller/EspecialidadController.delete')
+}).prefix('api/especialidad')
