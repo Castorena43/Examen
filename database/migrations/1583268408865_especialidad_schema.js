@@ -4,18 +4,18 @@
 const Schema = use('Schema')
 
 class EspecialidadSchema extends Schema {
-  up () {
-    this.create('especialidads', (table) => {
-      table.increments()
-      table.string('nombre',100).notNullable()
-      table.string('descripcion',400).notNullable()
-      table.timestamps()
-    })
-  }
+    up() {
+        this.create('especialidads', (table) => {
+            table.increments()
+            table.string('nombre', 100).notNullable()
+            table.string('descripcion', 400).notNullable()
+            table.timestamps()
+        })
+    }
 
-  down () {
-    this.drop('especialidads')
-  }
+    down() {
+        this.drop('especialidads')
+    }
 }
 
 module.exports = EspecialidadSchema

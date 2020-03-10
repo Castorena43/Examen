@@ -4,17 +4,18 @@
 const Schema = use('Schema')
 
 class QuirofanoSchema extends Schema {
-  up () {
-    this.create('quirofanos', (table) => {
-      table.increments()
-      table.string('nombre',100).notNullable()
-      table.timestamps()
-    })
-  }
+    up() {
+        this.create('quirofanos', (table) => {
+            table.increments()
+            table.string('nombre', 100).notNullable()
+            table.string('descripcion', 400).notNullable()
+            table.timestamps()
+        })
+    }
 
-  down () {
-    this.drop('quirofanos')
-  }
+    down() {
+        this.drop('quirofanos')
+    }
 }
 
 module.exports = QuirofanoSchema
