@@ -22,4 +22,5 @@ Route.group(() => {
   Route.post('/create','Controller/EspecialidadController.create')
   Route.post('/update','Controller/EspecialidadController.update')
   Route.post('/delete','Controller/EspecialidadController.delete')
+  Route.get('/data','Controller/EspecialidadController.data')
 }).prefix('api/especialidad')

@@ -31,6 +31,11 @@ class EspecialidadController {
     return response.status(201).send('Eliminacion exitosa')
 
   }
+
+  async data({response}){
+    const esp = await Especialidad.all()
+    return response.status(200).send(esp)
+  }
 }
 
 module.exports = EspecialidadController
