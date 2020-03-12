@@ -1,5 +1,6 @@
 'use strict'
 const Cita = use('App/Models/Cita')
+const Database = use('Database')
 class CitaController {
     async create({ request, response }) {
         const cita = new Cita()
@@ -32,6 +33,15 @@ class CitaController {
         await cita.delete()
 
         return response.status(201).send('Cita eliminada exitosamente')
+    }
+
+    async all(request, response) {
+        return await Database.select('citas.id as id', 'doctors.nombre as doctor', 'pacientes.nombre as paciente', 'consultorios.nombre as consultorio', 'citas.fecha_programada')
+            .from('citas')
+            .innerJoin('doctors', 'doctors.id', 'citas.id_doctor')
+            .innerJoin('pacientes', 'pacientes.id', 'citas.id_paciente')
+            .innerJoin('consultorios', 'consultorios.id', 'citas.id_consultorio')
+            //.groupBy('citas.id')
     }
 }
 

@@ -1,5 +1,6 @@
 'use strict'
 const Cirugia = use('App/Models/Cirugia')
+const Database = use('Database')
 class CirugiaController {
     async create({ request, response }) {
         const cirugia = new Cirugia()
@@ -32,6 +33,15 @@ class CirugiaController {
         await cirugia.delete()
 
         return response.status(201).send('Cirugia eliminada exitosamente')
+    }
+
+    async all(request, response) {
+        return await Database.select('cirugias.id as id', 'doctors.nombre as doctor', 'pacientes.nombre as paciente', 'quirofanos.nombre as quirofano', 'cirugias.fecha_programada')
+            .from('cirugias')
+            .innerJoin('doctors', 'doctors.id', 'cirugias.id_doctor')
+            .innerJoin('pacientes', 'pacientes.id', 'cirugias.id_paciente')
+            .innerJoin('quirofanos', 'quirofanos.id', 'cirugias.id_quirofano')
+            //.groupBy('cirugias.id')
     }
 }
 

@@ -20,49 +20,57 @@ Route.on('/').render('welcome')
 
 Route.group(() => {
     Route.post('/create', 'Controller/EspecialidadController.create')
-    Route.post('/update', 'Controller/EspecialidadController.update')
-    Route.post('/delete', 'Controller/EspecialidadController.delete')
-    Route.post('/all', 'Controller/EspecialidadController.all')
+    Route.put('/update', 'Controller/EspecialidadController.update')
+    Route.delete('/delete', 'Controller/EspecialidadController.delete')
+    Route.get('/all', 'Controller/EspecialidadController.all')
 }).prefix('api/especialidad')
 
 Route.group(() => {
     Route.post('/create', 'Controller/ConsultorioController.create')
-    Route.post('/update', 'Controller/ConsultorioController.update')
-    Route.post('/delete', 'Controller/ConsultorioController.delete')
-    Route.post('/all', 'Controller/ConsultorioController.all')
+    Route.put('/update', 'Controller/ConsultorioController.update')
+    Route.delete('/delete', 'Controller/ConsultorioController.delete')
+    Route.get('/all', 'Controller/ConsultorioController.all')
 }).prefix('api/consultorio')
 
 Route.group(() => {
     Route.post('/create', 'Controller/DoctorController.create')
-    Route.post('/update', 'Controller/DoctorController.update')
-    Route.post('/delete', 'Controller/DoctorController.delete')
-    Route.post('/all', 'Controller/DoctorController.all')
+    Route.put('/update', 'Controller/DoctorController.update')
+    Route.delete('/delete', 'Controller/DoctorController.delete')
+    Route.get('/all', 'Controller/DoctorController.all')
 }).prefix('api/doctor')
 
 Route.group(() => {
     Route.post('/create', 'Controller/PacienteController.create')
-    Route.post('/update', 'Controller/PacienteController.update')
-    Route.post('/delete', 'Controller/PacienteController.delete')
-    Route.post('/all', 'Controller/PacienteController.all')
+    Route.put('/update', 'Controller/PacienteController.update')
+    Route.delete('/delete', 'Controller/PacienteController.delete')
+    Route.get('/all', 'Controller/PacienteController.all')
 }).prefix('api/paciente')
 
 Route.group(() => {
     Route.post('/create', 'Controller/QuirofanoController.create')
-    Route.post('/update', 'Controller/QuirofanoController.update')
-    Route.post('/delete', 'Controller/QuirofanoController.delete')
-    Route.post('/all', 'Controller/QuirofanoController.all')
+    Route.put('/update', 'Controller/QuirofanoController.update')
+    Route.delete('/delete', 'Controller/QuirofanoController.delete')
+    Route.get('/all', 'Controller/QuirofanoController.all')
 }).prefix('api/quirofano')
 
 Route.group(() => {
     Route.post('/create', 'Controller/CitaController.create')
-    Route.post('/update', 'Controller/CitaController.update')
-    Route.post('/delete', 'Controller/CitaController.delete')
-    Route.post('/all', 'Controller/CitaController.all')
+    Route.put('/update', 'Controller/CitaController.update')
+    Route.delete('/delete', 'Controller/CitaController.delete')
+    Route.get('/all', 'Controller/CitaController.all')
 }).prefix('api/cita')
 
 Route.group(() => {
     Route.post('/create', 'Controller/CirugiaController.create')
-    Route.post('/update', 'Controller/CirugiaController.update')
-    Route.post('/delete', 'Controller/CirugiaController.delete')
-    Route.post('/all', 'Controller/CirugiaController.all')
+    Route.put('/update', 'Controller/CirugiaController.update')
+    Route.delete('/delete', 'Controller/CirugiaController.delete')
+    Route.get('/all', 'Controller/CirugiaController.all')
 }).prefix('api/cirugia')
+
+Route.group(() => {
+    Route.post('/register', 'Controller/UserController.register')
+    Route.post('/login', 'Controller/UserController.login')
+    Route.delete('/logout', 'Controller/UserController.logout')
+    Route.delete('/delete', 'Controller/UserController.delete')
+    Route.get('/all', 'Controller/UserController.all')
+}).prefix('api/user')
