@@ -41,8 +41,8 @@ Route.group(() => {
 
 Route.group(() => {
     Route.post('/create', 'Controller/PacienteController.create')
-    Route.post('/update', 'Controller/PacienteController.update')
-    Route.post('/delete', 'Controller/PacienteController.delete')
+    Route.post('/update/:id', 'Controller/PacienteController.update')
+    Route.delete('/delete/:id', 'Controller/PacienteController.delete')
     Route.get('/all', 'Controller/PacienteController.all')
 }).prefix('api/paciente')
 
