@@ -11,19 +11,19 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let especialidad of especialidades">
-      <td>{{ especialidad.nombre }}</td>
-      <td>{{ especialidad.apellido_paterno }}</td>
-      <td>{{ especialidad.apellido_materno }}</td>
-      <td>{{ especialidad.nss }}</td>
-      <td>{{ especialidad.direccion }}</td>
-      <td>{{ especialidad.telefono }}</td>
+    <tr *ngFor="let paciente of pacientes">
+      <td>{{ paciente.nombre }}</td>
+      <td>{{ paciente.apellido_paterno }}</td>
+      <td>{{ paciente.apellido_materno }}</td>
+      <td>{{ paciente.nss }}</td>
+      <td>{{ paciente.direccion }}</td>
+      <td>{{ paciente.telefono }}</td>
       <td>
-        <button type="button" class="btn btn-danger waves-effect">
+        <button type="button" class="btn btn-danger waves-effect" (click)="Eliminar(paciente.id)">
           <i class="material-icons">delete</i>
           <span>Delete</span>
         </button>
-        <button type="button" class="btn btn-warning waves-effect">
+        <button type="button" class="btn btn-warning waves-effect" (click)="Editar(paciente)">
           <i class="material-icons">edit</i>
           <span>Edit</span>
         </button>
@@ -31,14 +31,15 @@
     </tr>
   </tbody>
 </table>
-<h4>Formularios <small>template</small></h4>
+
 <hr>
 <div class="row clearfix center-block">
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="card">
 
           <div class="body">
-              <form [formGroup]="forma" (ngSubmit)="guardarCambios()" class="form-horizontal">
+              <form [formGroup]="forma" class="form-horizontal">
+              <!-- <form *ngIf="editar == true" [formGroup]="forma" (ngSubmit)="guardarCambios()" class="form-horizontal"> -->
                 <div class="row clearfix">
                   <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                       <label for="nombre">Nombre</label>
@@ -63,9 +64,9 @@
                 <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                     <div class="form-group">
                         <div class="form-line">
-                            <input type="text" id="apellido_Paterno" class="form-control" placeholder="Apellido Paterno" formControlName="apellido_Paterno">
+                            <input type="text" id="apellido_Paterno" class="form-control" placeholder="Apellido Paterno" formControlName="apellido_paterno">
                         </div>
-                        <div *ngIf="!forma.controls['apellido_Paterno'].valid && forma.controls['apellido_Paterno'].touched" class="invalid-feedback">
+                        <div *ngIf="!forma.controls['apellido_paterno'].valid && forma.controls['apellido_paterno'].touched" class="invalid-feedback">
                           El apellido es necesario.
                         </div>
                     </div>
@@ -78,9 +79,9 @@
                       <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                           <div class="form-group">
                               <div class="form-line">
-                                  <input type="text" id="apellido_Materno" class="form-control" placeholder="Apellido Materno" formControlName="apellido_Materno">
+                                  <input type="text" id="apellido_Materno" class="form-control" placeholder="Apellido Materno" formControlName="apellido_materno">
                               </div>
-                              <div *ngIf="!forma.controls['apellido_Materno'].valid && forma.controls['apellido_Materno'].touched" class="invalid-feedback">
+                              <div *ngIf="!forma.controls['apellido_materno'].valid && forma.controls['apellido_materno'].touched" class="invalid-feedback">
                                 El apellido es necesario.
                               </div>
                           </div>
@@ -133,7 +134,12 @@
               </div>
               <div class="row clearfix">
                   <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
-                    <button type="submit" class="btn btn-primary m-t-15 waves-effect">Agregar</button>
+                    <button *ngIf="editar == false" type="submit" class="btn btn-primary m-t-15 waves-effect" (click)="create()">Agregar</button>
+
+                    <button *ngIf="editar == true" type="submit" class="btn bg-orange waves-effect" (click)="guardarCambios(idx)">
+                      <i class="material-icons">save</i>
+                      <span>Guardar Cambios</span>
+                  </button>
                   </div>
               </div>
               {{ forma.valid }}
