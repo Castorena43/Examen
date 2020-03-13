@@ -33,18 +33,30 @@ class UserController {
         return response.status(202).json({ "Mensaje:": "Has cerrado sesion." });
     }
 
-    async all({ response, request }) {
+    async all({ response }) {
         const users = await User.all();
         return response.status(200).json(users);
     }
 
-    async delete({ request, response }) {
-        const { id } = request.all()
+    async delete({ params, response }) {
+        const id = params.id
         const user = await User.findOrFail(id)
 
         await user.delete()
 
-        return response.status(201).send('Usuario eliminado exitosamente')
+        return response.status(201).json({ 'respuesta': 'Usuario eliminado exitosamente' })
+    }
+
+    async update({ request, response, params }) {
+        const id = params.id
+        const { username, email, password } = request.all()
+        const user = await User.findOrFail(id)
+        user.username = username
+        user.email = email
+        user.password = password
+        await user.save()
+
+        return response.status(201).json({ 'respuesta': 'Usuario actualizado exitosamente' })
     }
 }
 module.exports = UserController

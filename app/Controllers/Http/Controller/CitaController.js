@@ -11,11 +11,12 @@ class CitaController {
         cita.fecha_programada = fecha_programada
         await cita.save()
 
-        return response.status(201).send('Cita insertada exitosamente')
+        return response.status(201).json({ 'respuesta': 'Cita insertada exitosamente' })
     }
 
-    async update({ request, response }) {
-        const { id, doctor, paciente, consultorio, fecha_programada } = request.all()
+    async update({ request, response, params }) {
+        const id = params.id
+        const { doctor, paciente, consultorio, fecha_programada } = request.all()
         const cita = await Cita.findOrFail(id)
         cita.id_doctor = doctor
         cita.id_paciente = paciente
@@ -23,19 +24,19 @@ class CitaController {
         cita.fecha_programada = fecha_programada
         await cita.save()
 
-        return response.status(201).send('Cita actualizada correctamente')
+        return response.status(201).json({ 'respuesta': 'Cita actualizada exitosamente' })
     }
 
-    async delete({ request, response }) {
-        const { id } = request.all()
+    async delete({ params, response }) {
+        const id = params.id
         const cita = await Cita.findOrFail(id)
 
         await cita.delete()
 
-        return response.status(201).send('Cita eliminada exitosamente')
+        return response.status(201).json({ 'respuesta': 'Cita eliminada exitosamente' })
     }
 
-    async all(request, response) {
+    async all(response) {
         return await Database.select('citas.id as id', 'doctors.nombre as doctor', 'pacientes.nombre as paciente', 'consultorios.nombre as consultorio', 'citas.fecha_programada')
             .from('citas')
             .innerJoin('doctors', 'doctors.id', 'citas.id_doctor')

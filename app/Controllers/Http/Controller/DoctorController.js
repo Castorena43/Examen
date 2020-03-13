@@ -19,12 +19,12 @@ class DoctorController {
         doctor.telefono = telefono
         await doctor.save()
 
-        return response.status(201).send('Doctor insertado exitosamente')
+        return response.status(201).json({ 'respuesta': 'Doctor insertado exitosamente' })
     }
 
-    async update({ request, response }) {
+    async update({ request, response, params }) {
+        const id = params.id
         const {
-            id,
             nombre,
             apellido_paterno,
             apellido_materno,
@@ -41,19 +41,19 @@ class DoctorController {
         doctor.telefono = telefono
         await doctor.save()
 
-        return response.status(201).send('Doctor actualizado exitosamente')
+        return response.status(201).json({ 'respuesta': 'Doctor actualizado exitosamente' })
     }
 
-    async delete({ request, response }) {
-        const { id } = request.all()
+    async delete({ params, response }) {
+        const id = params.id
         const doctor = await Doctor.findOrFail(id)
 
         await doctor.delete()
 
-        return response.status(201).send('Doctor eliminado exitosamente')
+        return response.status(201).json({ 'respuesta': 'Doctor eliminado exitosamente' })
     }
 
-    async all({ response, request }) {
+    async all({ response }) {
         const doctores = await Doctor.all();
         return response.status(200).json(doctores);
     }

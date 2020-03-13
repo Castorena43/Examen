@@ -4,18 +4,29 @@ const Database = use('Database')
 class CirugiaController {
     async create({ request, response }) {
         const cirugia = new Cirugia()
-        const { doctor, paciente, quirofano, fecha_programada } = request.all()
+        const {
+            doctor,
+            paciente,
+            quirofano,
+            fecha_programada
+        } = request.all()
         cirugia.id_doctor = doctor
         cirugia.id_paciente = paciente
         cirugia.id_quirofano = quirofano
         cirugia.fecha_programada = fecha_programada
         await cirugia.save()
 
-        return response.status(201).send('Cirugia insertada exitosamente')
+        return response.status(201).json({ 'respuesta': 'Cirugia insertada exitosamente' })
     }
 
-    async update({ request, response }) {
-        const { id, doctor, paciente, quirofano, fecha_programada } = request.all()
+    async update({ request, response, params }) {
+        const id = params.id
+        const {
+            doctor,
+            paciente,
+            quirofano,
+            fecha_programada
+        } = request.all()
         const cirugia = await Cirugia.findOrFail(id)
         cirugia.id_doctor = doctor
         cirugia.id_paciente = paciente
@@ -23,19 +34,19 @@ class CirugiaController {
         cirugia.fecha_programada = fecha_programada
         await cirugia.save()
 
-        return response.status(201).send('Cirugia actualizada correctamente')
+        return response.status(201).json({ 'respuesta': 'Cirugia actualizada exitosamente' })
     }
 
-    async delete({ request, response }) {
-        const { id } = request.all()
+    async delete({ params, response }) {
+        const id = params.id
         const cirugia = await Cirugia.findOrFail(id)
 
         await cirugia.delete()
 
-        return response.status(201).send('Cirugia eliminada exitosamente')
+        return response.status(201).json({ 'respuesta': 'Cirugia eliminada exitosamente' })
     }
 
-    async all(request, response) {
+    async all(response) {
         return await Database.select('cirugias.id as id', 'doctors.nombre as doctor', 'pacientes.nombre as paciente', 'quirofanos.nombre as quirofano', 'cirugias.fecha_programada')
             .from('cirugias')
             .innerJoin('doctors', 'doctors.id', 'cirugias.id_doctor')
