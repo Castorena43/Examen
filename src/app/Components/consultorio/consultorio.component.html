@@ -2,18 +2,20 @@
   <thead>
     <tr>
       <th scope="col">Nombre</th>
+      <th scope="col">Descripcion</th>
       <th scope="col">Opciones</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>Mark</td>
+    <tr *ngFor="let consultorio of consultorios">
+      <td>{{ consultorio.nombre }}</td>
+      <td>{{ consultorio.descripcion }}</td>
       <td>
-        <button type="button" class="btn btn-danger waves-effect">
+        <button type="button" class="btn btn-danger waves-effect" (click)="Eliminar(consultorio.id)">
           <i class="material-icons">delete</i>
           <span>Delete</span>
         </button>
-        <button type="button" class="btn btn-warning waves-effect">
+        <button type="button" class="btn btn-warning waves-effect" (click)="Editar(consultorio)">
           <i class="material-icons">edit</i>
           <span>Edit</span>
         </button>
@@ -21,3 +23,55 @@
     </tr>
   </tbody>
 </table>
+<div class="row clearfix center-block">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+          <div class="body">
+              <form [formGroup]="forma" class="form-horizontal">
+                <div class="row clearfix">
+                  <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                      <label for="nombre">Nombre</label>
+                  </div>
+                  <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                      <div class="form-group" >
+                          <div class="form-line" >
+                              <input type="text" id="nombre" class="form-control" placeholder="Nombre" formControlName="nombre">
+
+                          </div>
+                          <div *ngIf="!forma.controls['nombre'].valid && forma.controls['nombre'].touched" class="invalid-feedback">
+                            El nombre es necesario.
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="row clearfix">
+                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                    <label for="descripcion">Descripcion</label>
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <input type="text" id="descripcion" class="form-control" placeholder="Descripcion" formControlName="descripcion">
+                        </div>
+                        <div *ngIf="!forma.controls['descripcion'].valid && forma.controls['descripcion'].touched" class="invalid-feedback">
+                          La descripcion es necesario.
+                        </div>
+                    </div>
+                </div>
+            </div>
+              <div class="row clearfix">
+                  <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
+                    <button *ngIf="editar == false" type="submit" class="btn btn-primary m-t-15 waves-effect" (click)="create()">Agregar</button>
+
+                    <button *ngIf="editar == true" type="submit" class="btn bg-orange waves-effect" (click)="guardarCambios(idx)">
+                      <i class="material-icons">save</i>
+                      <span>Guardar Cambios</span>
+                  </button>
+                  </div>
+              </div>
+              {{ forma.valid }}
+              </form>
+          </div>
+      </div>
+  </div>
+</div>

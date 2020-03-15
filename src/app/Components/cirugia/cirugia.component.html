@@ -4,20 +4,22 @@
       <th scope="col">Doctor</th>
       <th scope="col">Paciente</th>
       <th scope="col">Quirofano</th>
+      <th scope="col">Fecha</th>
       <th scope="col">Opciones</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
+    <tr *ngFor="let cirugia of cirugias">
+      <th>{{ cirugia.doctor }}</th>
+      <td>{{ cirugia.paciente }}</td>
+      <td>{{ cirugia.quirofano }}</td>
+      <td>{{ cirugia.fecha_programada | date:"dd/MM/yy" }}</td>
       <td>
-        <button type="button" class="btn btn-danger waves-effect">
+        <button type="button" class="btn btn-danger waves-effect" (click)="Eliminar(cirugia.id)">
           <i class="material-icons">delete</i>
           <span>Delete</span>
         </button>
-        <button type="button" class="btn btn-warning waves-effect">
+        <button type="button" class="btn btn-warning waves-effect" (click)="Editar(cirugia)">
           <i class="material-icons">edit</i>
           <span>Edit</span>
         </button>
@@ -25,3 +27,93 @@
     </tr>
   </tbody>
 </table>
+
+<div class="row clearfix center-block">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+
+          <div class="body">
+              <form [formGroup]="forma" class="form-horizontal">
+
+              <div class="row clearfix">
+                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                  <label for="">Doctores</label>
+              </div>
+                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                  <div class="form-group">
+                    <div class="form-line">
+                    <select class="form-control show-tick" formControlName="doctor">
+                        <option selected value="" disabled>Doctor...</option>
+                        <option *ngFor="let doctor of doctores" [ngValue]="doctor.id">{{ doctor.nombre }}</option>
+                    </select>
+                    </div>
+                    <div *ngIf="!forma.controls['doctor'].valid && forma.controls['doctor'].touched" class="invalid-feedback">
+                      El doctor es necesario.
+                    </div>
+                    </div>
+                </div>
+              </div>
+              <div class="row clearfix">
+                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                  <label for="">Pacientes</label>
+              </div>
+                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                  <div class="form-group">
+                    <div class="form-line">
+                    <select class="form-control show-tick" formControlName="paciente">
+                        <option selected value="" disabled>Paciente...</option>
+                        <option *ngFor="let paciente of pacientes" [ngValue]="paciente.id">{{ paciente.nombre }}</option>
+                    </select>
+                    </div>
+                    <div *ngIf="!forma.controls['paciente'].valid && forma.controls['paciente'].touched" class="invalid-feedback">
+                      El paciente es necesario.
+                    </div>
+                    </div>
+                </div>
+              </div>
+              <div class="row clearfix">
+                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                  <label for="">Quirofanos</label>
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                  <div class="form-group">
+                    <div class="form-line">
+                    <select class="form-control show-tick" formControlName="quirofano">
+                        <option selected value="" disabled>Quirofano...</option>
+                        <option *ngFor="let quirofano of quirofanos" [ngValue]="quirofano.id">{{ quirofano.nombre }}</option>
+                    </select>
+                    </div>
+                    <div *ngIf="!forma.controls['quirofano'].valid && forma.controls['quirofano'].touched" class="invalid-feedback">
+                      El quirofano es necesario.
+                    </div>
+                    </div>
+                </div>
+              </div>
+              <div class="row clearfix">
+                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                    <label for="">Fecha</label>
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <input type="date" id="telefono" class="form-control" formControlName="fecha_programada">
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class="row clearfix">
+                  <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
+                    <button *ngIf="editar == false" type="submit" class="btn btn-primary m-t-15 waves-effect" (click)="create()">Agregar</button>
+
+                    <button *ngIf="editar == true" type="submit" class="btn bg-orange waves-effect" (click)="guardarCambios(idx)">
+                      <i class="material-icons">save</i>
+                      <span>Guardar Cambios</span>
+                  </button>
+                  </div>
+              </div>
+
+              </form>
+          </div>
+      </div>
+  </div>
+</div>

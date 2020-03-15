@@ -59,6 +59,8 @@
               "node_modules/adminbsb-materialdesign/plugins/momentjs/moment.js",
               "node_modules/adminbsb-materialdesign/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js",
               "node_modules/adminbsb-materialdesign/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js",
+
+              "node_modules/adminbsb-materialdesign/plugins/jquery-inputmask/jquery.inputmask.bundle.js",
               "node_modules/adminbsb-materialdesign/js/demo.js"
             ]
           },

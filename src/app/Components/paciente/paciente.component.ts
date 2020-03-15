@@ -25,7 +25,7 @@ export class PacienteComponent implements OnInit {
       'telefono': new FormControl('', Validators.required),
     });
 
-    this.service.getEspecialidades('api/paciente/all').subscribe( (data: any) => {
+    this.service.getPacientes('api/paciente/all').subscribe( (data: any) => {
       this.pacientes = data;
       console.log(data);
     });
@@ -35,11 +35,11 @@ export class PacienteComponent implements OnInit {
   ngOnInit(): void {}
 
   create(){
-    if( this.forma.valid ){
-      //console.log(this.forma.value);
+    if ( this.forma.valid ) {
+      // console.log(this.forma.value);
       this.service.create('api/paciente/create',this.forma.value).subscribe( (data: any) => {
         console.log(data);
-        this.alert('success','Agregado','Paciente agregado correctamente');
+        this.alert('success', 'Agregado', 'Paciente agregado correctamente');
       },
       error => this.alert('error', 'Something went wrong!', 'Oops...')
       );
@@ -71,15 +71,15 @@ export class PacienteComponent implements OnInit {
     this.forma.controls['nss'].setValue(paciente.nss);
     this.forma.controls['direccion'].setValue(paciente.direccion);
     this.forma.controls['telefono'].setValue(paciente.telefono);
-    //this.forma.controls['nombre'].setValue(paciente.nombre);
+    // this.forma.controls['nombre'].setValue(paciente.nombre);
     this.idx = paciente.id
   }
 
   Eliminar( id: number ) {
     console.log(id);
     this.service.delete('api/paciente/delete/' + id).subscribe( (data: any) => {
-      //console.log(data);
-      this.alert('success','Eliminado','Paciente eliminado correctamente');
+      // console.log(data);
+      this.alert('success', 'Eliminado', 'Paciente eliminado correctamente');
     },
     error => this.alert('error', 'Something went wrong!', 'Oops...')
     );

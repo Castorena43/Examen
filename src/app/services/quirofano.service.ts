@@ -1,22 +1,21 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { Paciente } from '../Components/paciente/paciente.component';
+import { Quirofano } from './../Components/quirofano/quirofano.component';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PacienteService {
+export class QuirofanoService {
 
   constructor( private http: HttpClient ) { }
 
-  getPacientes(path: string) {
-    return this.http.get(environment.apiBaseURL + path);
+  getQuirofanos(path: string) : Observable<Quirofano> {
+    return this.http.get<Quirofano>(environment.apiBaseURL + path);
   }
 
-  create(path: string, data: Paciente) {
+  create(path: string, data: Quirofano) {
     return this.http.post(environment.apiBaseURL + path, data);
   }
 
@@ -24,7 +23,7 @@ export class PacienteService {
     return this.http.delete(environment.apiBaseURL + path);
   }
 
-  update(path: string, data: Paciente) {
+  update(path: string, data: Quirofano) {
     return this.http.put(environment.apiBaseURL + path, data);
   }
 }
