@@ -1,5 +1,6 @@
 'use strict'
 const Doctor = use('App/Models/Doctor')
+const Database = use('Database')
 class DoctorController {
     async create({ request, response }) {
         const doctor = new Doctor()
@@ -54,7 +55,17 @@ class DoctorController {
     }
 
     async all({ response }) {
-        const doctores = await Doctor.all();
+        const doctores = await Database.select('doctors.id',
+                                              'doctors.nombre',
+                                              'doctors.apellido_materno',
+                                              'doctors.apellido_paterno',
+                                              'doctors.telefono',
+                                              'doctors.direccion',
+                                              'doctors.id_especialidad',
+                                              'especialidads.nombre as especialidad')
+          .from('doctors')
+          .innerJoin('especialidads','especialidads.id','doctors.id_especialidad')
+
         return response.status(200).json(doctores);
     }
 }
