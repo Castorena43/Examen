@@ -11,12 +11,14 @@ import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { MainComponent } from './Components/main/main.component';
 import { AuthGuard } from './guards/auth.guard';
+import { MarvelComponent } from './Components/main/components/marvel/marvel.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'main', component: MainComponent,
     children: [
+      {path: 'marvel', component: MarvelComponent},
       {path: 'especialidad', component: EspecialidadComponent},
       {path: 'doctor', component: DoctorComponent},
       {path: 'paciente', component: PacienteComponent},
@@ -27,7 +29,7 @@ const routes: Routes = [
     ],
     canActivate: [AuthGuard]
   },
-  {path: '**', pathMatch: 'full', redirectTo: 'main'}
+  {path: '**', pathMatch: 'full', redirectTo: 'main/marvel'}
 ];
 
 @NgModule({

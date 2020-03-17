@@ -43,8 +43,9 @@ export class PacienteComponent implements OnInit {
       },
       error => this.alert('error', 'Something went wrong!', 'Oops...')
       );
+    } else {
+      this.forma.markAllAsTouched();
     }
-    console.log('create');
   }
 
   guardarCambios(idx: number) {

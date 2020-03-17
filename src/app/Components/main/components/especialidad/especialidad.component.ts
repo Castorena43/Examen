@@ -41,6 +41,8 @@ export class EspecialidadComponent implements OnInit {
       },
       error => this.alert('error', 'Something went wrong!', 'Oops...')
       );
+    } else {
+      this.forma.markAllAsTouched();
     }
   }
 
@@ -56,6 +58,8 @@ export class EspecialidadComponent implements OnInit {
         // console.log(error);
       }
       );
+    } else {
+      this.forma.markAllAsTouched();
     }
   }
 

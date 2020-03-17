@@ -63,6 +63,8 @@ export class CirugiaComponent implements OnInit {
       error => {
         this.alert('error', 'Something went wrong!', 'Oops...');
       });
+    } else {
+      this.forma.markAllAsTouched();
     }
   }
 

@@ -15,6 +15,7 @@ import { DoctorComponent } from './Components/main/components/doctor/doctor.comp
 import { PacienteComponent } from './Components/main/components/paciente/paciente.component';
 import { ConsultorioComponent } from './Components/main/components/consultorio/consultorio.component';
 import { QuirofanoComponent } from './Components/main/components/quirofano/quirofano.component';
+import { MarvelComponent } from './Components/main/components/marvel/marvel.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { QuirofanoComponent } from './Components/main/components/quirofano/quiro
     QuirofanoComponent,
     LoginComponent,
     RegisterComponent,
-    MainComponent
+    MainComponent,
+    MarvelComponent
   ],
   imports: [
     BrowserModule,

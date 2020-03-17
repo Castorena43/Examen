@@ -40,6 +40,8 @@ export class ConsultorioComponent implements OnInit {
       },
       error => this.alert('error', 'Something went wrong!', 'Oops...')
       );
+    } else {
+      this.forma.markAllAsTouched();
     }
   }
 

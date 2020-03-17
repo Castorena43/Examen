@@ -9,6 +9,7 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
+
   constructor(private auth: AuthService, private route: Router, private auth0: Auth0Service ) {}
   canActivate() {
       if ( this.auth.isloggedin() ) {

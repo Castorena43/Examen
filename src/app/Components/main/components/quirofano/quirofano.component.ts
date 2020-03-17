@@ -43,6 +43,8 @@ export class QuirofanoComponent implements OnInit {
         console.log(error);
       }
       );
+    } else {
+      this.forma.markAllAsTouched();
     }
   }
 
@@ -58,6 +60,8 @@ export class QuirofanoComponent implements OnInit {
         // console.log(error);
       }
       );
+    } else {
+      this.forma.markAllAsTouched();
     }
   }
 

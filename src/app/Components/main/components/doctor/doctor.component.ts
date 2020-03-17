@@ -43,11 +43,13 @@ export class DoctorComponent implements OnInit {
 
   create(){
     if ( this.forma.valid ) {
-      this.service.create('api/doctor/create',this.forma.value).subscribe( (data: any) => {
+      this.service.create('api/doctor/create', this.forma.value).subscribe( (data: any) => {
         this.alert('success', 'Agregado', 'Doctor agregado correctamente');
       },
       error => this.alert('error', 'Something went wrong!', 'Oops...')
       );
+    } else {
+      this.forma.markAllAsTouched();
     }
   }
 
@@ -71,8 +73,8 @@ export class DoctorComponent implements OnInit {
     this.forma.controls['apellido_materno'].setValue(doctor.apellido_materno);
     this.forma.controls['direccion'].setValue(doctor.direccion);
     this.forma.controls['telefono'].setValue(doctor.telefono);
-    this.forma.controls['id_especialidad'].setValue(doctor.especialidad);
-    this.idx = doctor.id
+    this.forma.controls['id_especialidad'].setValue(doctor.id_especialidad);
+    this.idx = doctor.id;
   }
 
   Eliminar( id: number ) {

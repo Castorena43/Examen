@@ -98,6 +98,9 @@
                         <div class="form-line">
                             <input type="date" id="telefono" class="form-control" formControlName="fecha_programada">
                         </div>
+                        <div *ngIf="!forma.controls['fecha_programada'].valid && forma.controls['fecha_programada'].touched" class="invalid-feedback">
+                          La fecha es necesaria.
+                        </div>
                     </div>
                 </div>
               </div>
