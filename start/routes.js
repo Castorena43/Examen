@@ -76,3 +76,4 @@ Route.group(() => {
     Route.get('/all',
         'Controller/UserController.all ')
 }).prefix('api/user')
+Route.get('api/consumir', 'Controller/MarvelController.consumir');
