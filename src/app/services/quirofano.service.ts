@@ -1,4 +1,4 @@
-import { Quirofano } from './../Components/quirofano/quirofano.component';
+import { Quirofano } from '../Components/main/components/quirofano/quirofano.component';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';

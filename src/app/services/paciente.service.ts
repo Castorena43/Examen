@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Paciente } from '../Components/paciente/paciente.component';
+import { Paciente } from '../Components/main/components/paciente/paciente.component';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 

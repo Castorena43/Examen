@@ -1,0 +1,48 @@
+<body class="login-page">
+  <div class="login-box">
+      <div class="logo">
+          <a>Hospital</a>
+
+      </div>
+      <div class="card">
+          <div class="body">
+              <form [formGroup]="forma">
+                  <div class="msg">Sign in to start your session</div>
+                  <div class="input-group">
+                      <span class="input-group-addon">
+                          <i class="material-icons">person</i>
+                      </span>
+                      <div class="form-line">
+                          <input type="text" class="form-control" name="username" placeholder="Correo" formControlName="email">
+                      </div>
+                      <div *ngIf="!forma.controls['email'].valid && forma.controls['email'].touched" class="invalid-feedback">
+                        El correo es necesario.
+                      </div>
+                  </div>
+                  <div class="input-group">
+                      <span class="input-group-addon">
+                          <i class="material-icons">lock</i>
+                      </span>
+                      <div class="form-line">
+                          <input type="password" class="form-control" name="password" placeholder="Contraseña" formControlName="password">
+                      </div>
+                      <div *ngIf="!forma.controls['password'].valid && forma.controls['password'].touched" class="invalid-feedback">
+                        La contraseña es necesaria.
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="">
+                          <button class="btn btn-block bg-pink waves-effect" type="submit" (click)="login()">Iniciar Sesion</button>
+                          <button class="btn btn-block bg-pink waves-effect" type="submit" (click)="auth0.login()">Iniciar Sesion con auth0</button>
+                      </div>
+                  </div>
+                  <div class="row m-t-15 m-b--20">
+                      <div class="col-xs-6">
+                          <a [routerLink]="['/register']">Registrate Ahora!</a>
+                      </div>
+
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>

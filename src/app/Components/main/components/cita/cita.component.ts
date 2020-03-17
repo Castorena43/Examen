@@ -56,7 +56,7 @@ export class CitaComponent implements OnInit {
 
   create(){
     if ( this.forma.valid ) {
-      this.service.create('api/cita/create',this.forma.value).subscribe( (data: any) => {
+      this.service.create('api/cita/create', this.forma.value).subscribe( (data: any) => {
         this.alert('success', 'Agregado', 'Cita agregada correctamente');
         console.log(data);
         this.forma.reset();

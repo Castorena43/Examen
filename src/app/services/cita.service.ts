@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Cita } from '../Components/cita/cita.component';
 import { environment } from 'src/environments/environment';
+import { Cita } from '../Components/main/components/cita/cita.component';
 
 @Injectable({
   providedIn: 'root'

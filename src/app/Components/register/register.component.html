@@ -1,0 +1,52 @@
+<body class="signup-page">
+  <div class="signup-box">
+      <div class="logo">
+          <a>Hospital</a>
+          <small></small>
+      </div>
+      <div class="card">
+          <div class="body">
+              <form [formGroup]="forma" (ngSubmit)="register()">
+                  <div class="msg">Registra un nuevo usuario</div>
+                  <div class="input-group">
+                      <span class="input-group-addon">
+                          <i class="material-icons">person</i>
+                      </span>
+                      <div class="form-line">
+                          <input type="text" class="form-control" name="namesurname" placeholder="Name" autofocus formControlName="username">
+                      </div>
+                      <div *ngIf="!forma.controls['username'].valid && forma.controls['username'].touched" class="invalid-feedback">
+                        El usuario es necesario.
+                      </div>
+                  </div>
+                  <div class="input-group">
+                      <span class="input-group-addon">
+                          <i class="material-icons">email</i>
+                      </span>
+                      <div class="form-line">
+                          <input type="email" class="form-control" name="email" placeholder="Email Address" formControlName="email">
+                      </div>
+                      <div *ngIf="!forma.controls['email'].valid && forma.controls['email'].touched" class="invalid-feedback">
+                        El correo es necesario.
+                      </div>
+                  </div>
+                  <div class="input-group">
+                      <span class="input-group-addon">
+                          <i class="material-icons">lock</i>
+                      </span>
+                      <div class="form-line">
+                          <input type="password" class="form-control" name="password" minlength="6" placeholder="Password" formControlName="password">
+                      </div>
+                      <div *ngIf="!forma.controls['password'].valid && forma.controls['password'].touched" class="invalid-feedback">
+                        La contraseña es necesaria.
+                      </div>
+                  </div>
+                  <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">Registrar</button>
+
+                  <div class="m-t-25 m-b--5 align-center">
+                      <a [routerLink]="['/login']">Ya tienes una cuenta?</a>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>

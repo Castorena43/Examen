@@ -44,7 +44,7 @@ export class ConsultorioComponent implements OnInit {
   }
 
   guardarCambios(idx: number) {
-    if( this.forma.valid ) {
+    if ( this.forma.valid ) {
       // console.log(this.forma.value);
       this.service.update('api/consultorio/update/' + idx, this.forma.value).subscribe( (data: any) => {
         // console.log(data);

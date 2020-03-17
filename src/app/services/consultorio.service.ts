@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Consultorio } from '../Components/consultorio/consultorio.component';
+import { Consultorio } from '../Components/main/components/consultorio/consultorio.component';
 import { Observable } from 'rxjs';
 
 
