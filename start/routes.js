@@ -75,3 +75,4 @@ Route.group(() => {
     Route.delete('/delete/:id', 'Controller/UserController.delete')
     Route.get('/all', 'Controller/UserController.all ')
 }).prefix('api/user')
+Route.get('api/consumir', 'Controller/MarvelController.consumir');

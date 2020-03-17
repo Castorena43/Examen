@@ -47,7 +47,14 @@ class CirugiaController {
     }
 
     async all(response) {
-        return await Database.select('cirugias.id as id', 'doctors.nombre as doctor', 'pacientes.nombre as paciente', 'quirofanos.nombre as quirofano', 'cirugias.fecha_programada')
+        return await Database.select('cirugias.id as id',
+                                     'doctors.nombre as doctor',
+                                     'doctors.id as id_doctor',
+                                     'pacientes.nombre as paciente',
+                                     'pacientes.id as id_paciente',
+                                     'quirofanos.nombre as quirofano',
+                                     'quirofanos.id as id_quirofano',
+                                     'cirugias.fecha_programada')
             .from('cirugias')
             .innerJoin('doctors', 'doctors.id', 'cirugias.id_doctor')
             .innerJoin('pacientes', 'pacientes.id', 'cirugias.id_paciente')

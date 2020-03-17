@@ -40,7 +40,14 @@ class CitaController {
     }
 
     async all(response) {
-        return await Database.select('citas.id as id', 'doctors.nombre as doctor', 'pacientes.nombre as paciente', 'consultorios.nombre as consultorio', 'citas.fecha_programada')
+        return await Database.select('citas.id as id',
+                                     'doctors.nombre as doctor',
+                                     'doctors.id as id_doctor',
+                                     'pacientes.nombre as paciente',
+                                     'pacientes.id as id_paciente',
+                                     'consultorios.nombre as consultorio',
+                                     'consultorios.id as id_consultorio',
+                                     'citas.fecha_programada')
             .from('citas')
             .innerJoin('doctors', 'doctors.id', 'citas.id_doctor')
             .innerJoin('pacientes', 'pacientes.id', 'citas.id_paciente')

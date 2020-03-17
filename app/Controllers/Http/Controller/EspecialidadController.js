@@ -36,6 +36,10 @@ class EspecialidadController {
         const especialidades = await Especialidad.all()
         return response.status(200).send(especialidades)
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> e85b4614c91592ebf93de5353022e115025bba57
 }
 
 module.exports = EspecialidadController
