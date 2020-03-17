@@ -13,7 +13,7 @@ class DoctorSchema extends Schema {
             table.string('apellido_materno', 150).notNullable()
             table.string('direccion', 150).notNullable()
             table.string('telefono', 13).notNullable()
-            table.foreign('id_especialidad').references('especialidads.id')
+            table.foreign('id_especialidad').references('especialidads.id').onDelete()
             table.timestamps()
         })
     }

@@ -1,6 +1,9 @@
 'use strict'
 const Cita = use('App/Models/Cita')
 const Database = use('Database')
+var Client = require('node-rest-client').Client
+const jsPDF = require('jspdf').jsPDF
+
 class CitaController {
     async create({ request, response }) {
         const cita = new Cita()

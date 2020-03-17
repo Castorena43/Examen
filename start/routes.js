@@ -73,6 +73,5 @@ Route.group(() => {
     Route.delete('/logout', 'Controller/UserController.logout')
     Route.put('/update/:id', 'Controller/UserController.update')
     Route.delete('/delete/:id', 'Controller/UserController.delete')
-    Route.get('/all',
-        'Controller/UserController.all ')
+    Route.get('/all', 'Controller/UserController.all ')
 }).prefix('api/user')

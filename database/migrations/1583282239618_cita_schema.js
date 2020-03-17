@@ -11,9 +11,9 @@ class CitaSchema extends Schema {
             table.integer('id_paciente').unsigned()
             table.integer('id_consultorio').unsigned()
             table.datetime('fecha_programada').notNullable()
-            table.foreign('id_doctor').references('doctors.id')
-            table.foreign('id_paciente').references('pacientes.id')
-            table.foreign('id_consultorio').references('consultorios.id')
+            table.foreign('id_doctor').references('doctors.id').onDelete()
+            table.foreign('id_paciente').references('pacientes.id').onDelete()
+            table.foreign('id_consultorio').references('consultorios.id').onDelete()
             table.timestamps()
         })
     }
