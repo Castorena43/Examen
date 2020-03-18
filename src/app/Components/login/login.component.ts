@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService1 } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Auth0Service } from 'src/app/services/auth0.service';
-
+import { AuthService } from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   forma: FormGroup;
   usuario: User;
-  constructor(private auth: AuthService, private route: Router, public auth0: Auth0Service ) { }
+  constructor(private auth: AuthService1, private route: Router, public auth0: Auth0Service, private authService: AuthService ) { }
 
   ngOnInit(): void {
     this.forma = new FormGroup({
@@ -44,6 +45,13 @@ export class LoginComponent implements OnInit {
       title: title,
       text: msg
     });
+  }
+  signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+
+  signOut(): void {
+    this.authService.signOut();
   }
 }
 

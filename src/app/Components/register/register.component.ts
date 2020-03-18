@@ -1,7 +1,7 @@
 import { User } from './../login/login.component';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService1 } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit {
 
   forma: FormGroup;
   usuario: User;
-  constructor(private auth: AuthService) {
+  constructor(private auth: AuthService1) {
     this.forma = new FormGroup({
       'username': new FormControl('', Validators.required),
       'email': new FormControl('', Validators.required),

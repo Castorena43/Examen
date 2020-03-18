@@ -8,6 +8,7 @@ import { DoctorService } from 'src/app/services/doctor.service';
 import { PacienteService } from 'src/app/services/paciente.service';
 import { Doctor } from '../doctor/doctor.component';
 import { CirugiaService } from 'src/app/services/cirugia.service';
+import { timeInterval } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cirugia',
@@ -32,23 +33,23 @@ export class CirugiaComponent implements OnInit {
       'quirofano': new FormControl('', Validators.required),
       'fecha_programada': new FormControl('', Validators.required)
     });
-
-    this.service.getCirugias('api/cirugia/all').subscribe( (data: any) => {
-      this.cirugias = data;
-      console.log(data);
-    });
-    this.service_doc.getDoctores('api/doctor/all').subscribe( (data: any) => {
-      this.doctores = data;
-      console.log(data);
-    });
-    this.service_pac.getPacientes('api/paciente/all').subscribe( (data:any) => {
-      this.pacientes = data;
-    });
-    this.service_quir.getQuirofanos('api/quirofano/all').subscribe( (data: any) => {
-      this.quirofanos = data;
-      console.log(data);
-    });
-
+    setInterval(() => {
+      this.service.getCirugias('api/cirugia/all').subscribe( (data: any) => {
+        this.cirugias = data;
+        // console.log(data);
+      });
+      this.service_doc.getDoctores('api/doctor/all').subscribe( (data: any) => {
+        this.doctores = data;
+        // console.log(data);
+      });
+      this.service_pac.getPacientes('api/paciente/all').subscribe( (data:any) => {
+        this.pacientes = data;
+      });
+      this.service_quir.getQuirofanos('api/quirofano/all').subscribe( (data: any) => {
+        this.quirofanos = data;
+        // console.log(data);
+      });
+    }, 2000);
    }
 
   ngOnInit(): void {}
