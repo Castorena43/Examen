@@ -21,6 +21,7 @@
     "@angular/router": "~9.0.1",
     "@auth0/auth0-spa-js": "^1.6.4",
     "adminbsb-materialdesign": "^1.0.7",
+    "all": "0.0.0",
     "auth0-js": "^9.12.2",
     "bootstrap": "^4.4.1",
     "jquery": "^3.4.1",
