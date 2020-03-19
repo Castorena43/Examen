@@ -17,9 +17,9 @@ export class UserComponent implements OnInit {
   idx: number;
   constructor(private service: UsersService) {
     this.forma = new FormGroup({
-      'username': new FormControl('', [Validators.required,Validators.minLength(3)]),
-      'email': new FormControl('', Validators.required),
-      'password': new FormControl('', Validators.required)
+      username: new FormControl('', [Validators.required,Validators.minLength(3)]),
+      email: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required)
     });
 
     this.service.getUsers('api/user/all').subscribe( (data: any) => {
