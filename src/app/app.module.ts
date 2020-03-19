@@ -16,7 +16,18 @@ import { PacienteComponent } from './Components/main/components/paciente/pacient
 import { ConsultorioComponent } from './Components/main/components/consultorio/consultorio.component';
 import { QuirofanoComponent } from './Components/main/components/quirofano/quirofano.component';
 import { MarvelComponent } from './Components/main/components/marvel/marvel.component';
-
+import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
+import { UserComponent } from './Components/main/components/user/user/user.component';
+const config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider('1008461747491-m37cu1jfd95ls9mnkm93umopl27781pl.apps.googleusercontent.com')
+  }
+]);
+export function provideConfig() {
+  return config;
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,15 +41,22 @@ import { MarvelComponent } from './Components/main/components/marvel/marvel.comp
     LoginComponent,
     RegisterComponent,
     MainComponent,
-    MarvelComponent
+    MarvelComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SocialLoginModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

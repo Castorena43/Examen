@@ -1,0 +1,96 @@
+<table class="table table-bordered table-dark">
+    <thead>
+        <tr>
+            <th scope="col">Username</th>
+            <th scope="col">email</th>
+            <th scope="col">Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+                <button type="button" class="btn btn-danger waves-effect" (click)="Eliminar(user.id)">
+          <i class="material-icons">delete</i>
+          <span>Delete</span>
+        </button>
+                <button type="button" class="btn btn-warning waves-effect" (click)="Editar(user)">
+          <i class="material-icons">edit</i>
+          <span>Edit</span>
+        </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="row clearfix center-block">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+
+            <div class="body">
+                <form [formGroup]="forma" class="form-horizontal">
+                    <!-- <form *ngIf="editar == true" [formGroup]="forma" (ngSubmit)="guardarCambios()" class="form-horizontal"> -->
+                    <div class="row clearfix">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                            <label for="username">Username</label>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                            <div class="form-group">
+                                <!-- [ngClass]="{ 'has-danger': !forma.get('nombre').valid }" -->
+                                <div class="form-line">
+                                    <input type="text" id="username" class="form-control" placeholder="Username" formControlName="username">
+
+                                </div>
+                                <div *ngIf="!forma.controls['username'].valid && forma.controls['username'].touched" class="invalid-feedback">
+                                    El username es necesario.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                            <label for="email">Email</label>
+                        </div>
+                        <div class=" col-lg-10 col-md-10 col-sm-8 col-xs-7 ">
+                            <div class="form-group ">
+                                <div class="form-line ">
+                                    <input type="text " id="email " class="form-control " placeholder="Email" formControlName="email ">
+                                </div>
+                                <div *ngIf="!forma.controls[ 'email'].valid && forma.controls[ 'email'].touched " class="invalid-feedback ">
+                                    El email es necesario.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix ">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label ">
+                            <label for="password ">Password</label>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7 ">
+                            <div class="form-group ">
+                                <div class="form-line ">
+                                    <input type="text " id="password " class="form-control " placeholder="Password" formControlName="password ">
+                                </div>
+                                <div *ngIf="!forma.controls[ 'password'].valid && forma.controls[ 'password'].touched " class="invalid-feedback ">
+                                    El password es necesario.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row clearfix ">
+                        <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5 ">
+                            <button *ngIf="editar==false " type="submit " class="btn btn-primary m-t-15 waves-effect " (click)="register() ">Agregar</button>
+
+                            <button *ngIf="editar==true " type="submit " class="btn bg-orange waves-effect " (click)="guardarCambios(idx) ">
+                      <i class="material-icons ">save</i>
+                      <span>Guardar Cambios</span>
+                  </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
