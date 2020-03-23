@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
 
   constructor(private auth: AuthService1, private route: Router, private auth0: Auth0Service, private authService: AuthService ) {}
   canActivate() {
-      if ( this.auth.isloggedin() ) {
+      if ( this.auth.isloggedin() || this.auth0.isAuthenticated$ ) {
         return true;
       } else {
         this.route.navigateByUrl('/login');
@@ -25,15 +25,26 @@ export class AuthGuard implements CanActivate {
       // return this.dashboardGuard();
   }
 
+  canActivateChild(): Observable<boolean>|Promise<boolean>|boolean {
+      if ( this.auth.isloggedin() || this.auth0.isAuthenticated$ ) {
+        return true;
+      } else {
+        this.route.navigateByUrl('/login');
+        return false;
+      }
+      return this.auth0.isAuthenticated$;
+    }
+
   dashboardGuard(): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.authService.authState.subscribe(user => {
-        this.googleAuthenticated = (user != null);
+        this.user = user;
+        this.googleAuthenticated = (this.user != null);
         if (this.googleAuthenticated) {
-          this.route.navigate(['main','marvel']);
+
           resolve(true);
         } else {
-          this.route.navigate(['login']);
+          this.route.navigateByUrl('/login');
           resolve(false);
         }
       });

@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     if (this.forma.valid){
       this.usuario = this.forma.value;
       this.auth.login(this.usuario).subscribe( (data: any) => {
-        this.route.navigate( ['/main'] );
+        this.route.navigate( ['main', 'marvel'] );
       },
       error => this.alert('error', 'Error', 'No se pudo iniciar sesion')
       );

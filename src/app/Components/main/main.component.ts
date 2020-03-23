@@ -33,7 +33,7 @@ export class MainComponent implements OnInit {
   status() {
     this.authg.authState.subscribe((user) => {
       this.user = user;
-      this.loggedIn = (user != null);
+      this.loggedIn = (this.user != null);
       return this.loggedIn;
     });
   }
