@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
 
   constructor(private auth: AuthService1, private route: Router, private auth0: Auth0Service, private authService: AuthService ) {}
   canActivate() {
-      if ( this.auth.isloggedin() || this.auth0.isAuthenticated$ ) {
+      if ( this.auth.isloggedin() ) {
         return true;
       } else {
         this.route.navigateByUrl('/login');
@@ -23,16 +23,17 @@ export class AuthGuard implements CanActivate {
       }
       // return this.auth0.isAuthenticated$;
       // return this.dashboardGuard();
-  }
+    }
 
   canActivateChild(): Observable<boolean>|Promise<boolean>|boolean {
-      if ( this.auth.isloggedin() || this.auth0.isAuthenticated$ ) {
+      if ( this.auth.isloggedin() ) {
         return true;
       } else {
         this.route.navigateByUrl('/login');
         return false;
       }
-      return this.auth0.isAuthenticated$;
+      // return this.auth0.isAuthenticated$;
+      // return this.dashboardGuard();
     }
 
   dashboardGuard(): Promise<boolean> {
@@ -41,7 +42,7 @@ export class AuthGuard implements CanActivate {
         this.user = user;
         this.googleAuthenticated = (this.user != null);
         if (this.googleAuthenticated) {
-
+          // this.route.navigateByUrl('/main/marvel');
           resolve(true);
         } else {
           this.route.navigateByUrl('/login');
@@ -52,3 +53,4 @@ export class AuthGuard implements CanActivate {
   }
 
 }
+

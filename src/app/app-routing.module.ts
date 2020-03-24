@@ -12,11 +12,13 @@ import { RegisterComponent } from './Components/register/register.component';
 import { MainComponent } from './Components/main/main.component';
 import { AuthGuard } from './guards/auth.guard';
 import { MarvelComponent } from './Components/main/components/marvel/marvel.component';
+import { UserComponent} from './Components/main/components/user/user/user.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'main', component: MainComponent,
+    canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
     children: [
       {path: 'marvel', component: MarvelComponent},
@@ -26,9 +28,9 @@ const routes: Routes = [
       {path: 'consultorio', component: ConsultorioComponent},
       {path: 'quirofano', component: QuirofanoComponent},
       {path: 'cita', component: CitaComponent},
-      {path: 'cirugia', component: CirugiaComponent}
-    ],
-    canActivate: [AuthGuard]
+      {path: 'cirugia', component: CirugiaComponent},
+      {path: 'user', component: UserComponent}
+    ]
   },
   {path: '**', pathMatch: 'full', redirectTo: 'main/marvel'}
 ];

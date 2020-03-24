@@ -74,6 +74,7 @@ export class CirugiaComponent implements OnInit {
       this.service.update('api/cirugia/update/' + idx, this.forma.value).subscribe( (data: any) => {
         this.alert('success', 'Actualizado', 'Cirugia actualizado correctamente');
         this.forma.reset();
+        this.editar = false;
       },
       error => {
         this.alert('error', 'Something went wrong!', 'Oops...');

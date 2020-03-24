@@ -18,6 +18,7 @@ import { QuirofanoComponent } from './Components/main/components/quirofano/quiro
 import { MarvelComponent } from './Components/main/components/marvel/marvel.component';
 import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
+import { UserComponent } from './Components/main/components/user/user/user.component';
 const config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
@@ -40,7 +41,8 @@ export function provideConfig() {
     LoginComponent,
     RegisterComponent,
     MainComponent,
-    MarvelComponent
+    MarvelComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

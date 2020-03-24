@@ -51,6 +51,8 @@ export class ConsultorioComponent implements OnInit {
       this.service.update('api/consultorio/update/' + idx, this.forma.value).subscribe( (data: any) => {
         // console.log(data);
         this.alert('success', 'Actualizado', 'Consultorio actualizado correctamente');
+        this.editar = false;
+        this.forma.reset();
       },
       error => {
         this.alert('error', 'Something went wrong!', 'Oops...');

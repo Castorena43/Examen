@@ -52,6 +52,8 @@ export class EspecialidadComponent implements OnInit {
       this.service.update('api/especialidad/update/' + idx, this.forma.value).subscribe( (data: any) => {
         // console.log(data);
         this.alert('success', 'Actualizado', 'Especialidad actualizado correctamente');
+        this.editar = false;
+        this.forma.reset();
       },
       error => {
         this.alert('error', 'Something went wrong!', 'Oops...');

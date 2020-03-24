@@ -3,13 +3,24 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../Components/login/login.component';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
+import { AuthService } from 'angularx-social-login';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService1 {
   token: string;
-  constructor(private http: HttpClient) { this.readToken(); }
+  constructor(private http: HttpClient, private auth: AuthService, private route: Router ) {
+    this.readToken();
+    this.auth.authState.subscribe(user => {
+      if (user) {
+        this.token = user.authToken;
+        localStorage.setItem('token', this.token);
+        this.route.navigate(['main', 'marvel']);
+      }
+    });
+  }
 
   login(data: User) {
     return this.http.post(environment.apiBaseURL + 'api/user/login', data).pipe(
@@ -33,10 +44,10 @@ export class AuthService1 {
   }
 
   readToken() {
-    if (localStorage.getItem("token")) {
-      this.token = localStorage.getItem("token");
+    if (localStorage.getItem('token')) {
+      this.token = localStorage.getItem('token');
     } else {
-      this.token = "";
+      this.token = '';
     }
     return this.token;
   }

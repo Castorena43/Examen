@@ -11,7 +11,7 @@ export class QuirofanoService {
 
   constructor( private http: HttpClient ) { }
 
-  getQuirofanos(path: string) : Observable<Quirofano> {
+  getQuirofanos(path: string): Observable<Quirofano> {
     return this.http.get<Quirofano>(environment.apiBaseURL + path);
   }
 

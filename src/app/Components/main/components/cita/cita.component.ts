@@ -74,6 +74,7 @@ export class CitaComponent implements OnInit {
       this.service.update('api/cita/update/' + idx, this.forma.value).subscribe( (data: any) => {
         this.alert('success', 'Actualizado', 'Doctor actualizado correctamente');
         this.forma.reset();
+        this.editar = false;
       },
       error => {
         this.alert('error', 'Something went wrong!', 'Oops...');

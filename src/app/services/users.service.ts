@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Doctor } from '../Components/main/components/doctor/doctor.component';
+import { User } from '../Components/main/components/user/user/user.component';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DoctorService {
+export class UsersService {
 
-  constructor( private http: HttpClient ) { }
+  constructor(private http: HttpClient) { }
 
-  getDoctores(path: string): Observable<Doctor> {
-    return this.http.get<Doctor>(environment.apiBaseURL + path);
+  getUsers(path: string): Observable<User> {
+    return this.http.get<User>(environment.apiBaseURL + path);
   }
 
-  create(path: string, data: Doctor) {
+  register(path: string, data: User) {
     return this.http.post(environment.apiBaseURL + path, data);
   }
 
@@ -23,7 +23,7 @@ export class DoctorService {
     return this.http.delete(environment.apiBaseURL + path);
   }
 
-  update(path: string, data: Doctor) {
+  update(path: string, data: User) {
     return this.http.put(environment.apiBaseURL + path, data);
   }
 }

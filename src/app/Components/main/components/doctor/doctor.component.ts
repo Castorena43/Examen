@@ -41,7 +41,7 @@ export class DoctorComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  create(){
+  create() {
     if ( this.forma.valid ) {
       this.service.create('api/doctor/create', this.forma.value).subscribe( (data: any) => {
         this.alert('success', 'Agregado', 'Doctor agregado correctamente');
@@ -57,6 +57,8 @@ export class DoctorComponent implements OnInit {
     if ( this.forma.valid ) {
       this.service.update('api/doctor/update/' + idx, this.forma.value).subscribe( (data: any) => {
         this.alert('success', 'Actualizado', 'Doctor actualizado correctamente');
+        this.editar = false;
+        this.forma.reset();
       },
       error => {
         this.alert('error', 'Something went wrong!', 'Oops...');
@@ -93,8 +95,6 @@ export class DoctorComponent implements OnInit {
       text: msg
     });
   }
-
-
 }
 
 export interface Doctor {

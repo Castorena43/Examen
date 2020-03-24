@@ -54,6 +54,8 @@ export class QuirofanoComponent implements OnInit {
       this.service.update('api/quirofano/update/' + idx, this.forma.value).subscribe( (data: any) => {
         // console.log(data);
         this.alert('success', 'Actualizado', 'Quirofano actualizado correctamente');
+        this.editar = false;
+        this.forma.reset();
       },
       error => {
         this.alert('error', 'Something went wrong!', 'Oops...');

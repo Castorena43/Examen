@@ -50,15 +50,17 @@ export class PacienteComponent implements OnInit {
 
   guardarCambios(idx: number) {
     console.log('guardarCambios');
-    if( this.forma.valid ) {
+    if ( this.forma.valid ) {
       // console.log(this.forma.value);
       this.service.update('api/paciente/update/' + idx, this.forma.value).subscribe( (data: any) => {
-        console.log(data);
+        // console.log(data);
         this.alert('success', 'Actualizado', 'Paciente actualizado correctamente');
+        this.editar = false;
+        this.forma.reset();
       },
       error => {
         this.alert('error', 'Something went wrong!', 'Oops...');
-        console.log(error);
+        // console.log(error);
       }
       );
     }
